@@ -168,7 +168,7 @@ class WidowX_Controller(RobotControllerBase):
         gripper_attached: either "custom" or "default"
         """
         print('waiting for widowx_controller to be set up...')
-        self.bot = ModifiedInterbotixManipulatorXS(robot_model=robot_name)
+        self.bot = ModifiedInterbotixManipulatorXS(robot_model=robot_name, init_node=False)
         # TODO: Why was this call necessary in the visual_foresight? With the new SDK it messes the motor parameters
         # self.bot.dxl.robot_set_operating_modes("group", "arm", "position", profile_type="velocity", profile_velocity=131, profile_acceleration=15)
 

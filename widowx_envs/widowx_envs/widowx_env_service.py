@@ -33,7 +33,7 @@ class WidowXConfigs:
         "start_state": [0.3, 0.0, 0.15, 0, 0, 0, 1], # pose when reset is called
         "skip_move_to_neutral": False,
         "return_full_image": False,
-        "camera_topics": [{"name": "/blue/image_raw"}],
+        "camera_topics": [{"name": "/camera/camera_stream/color/image_raw"}],
     }
 
     DefaultActionConfig = ActionConfig(

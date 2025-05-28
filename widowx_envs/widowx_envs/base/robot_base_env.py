@@ -214,7 +214,7 @@ class RobotBaseEnv(BaseEnv):
                   -keys corresponding to numpy arrays should have constant shape every timestep (for caching)
                   -images should be placed in the 'images' key in a (ncam, ...) array
         """
-        assert action.shape[0] == self._base_adim, "Action should have shape ({},) but has shape {}".format(self._base_adim, action.shape)
+        assert action.shape[0] == self._base_adim, f"Action should have shape ({self._base_adim},) but has shape {tuple(action.shape)}"
         action = np.clip(action, self.action_space.low, self.action_space.high)
         if self._hp.action_mode == '3trans1rot':
             action = np.concatenate([action[:3], np.zeros(2), action[-2:]])  # insert zeros for pitch and roll
@@ -248,7 +248,7 @@ class RobotBaseEnv(BaseEnv):
 
         if self._hp.wait_until_gripper_pose_reached:
             self._controller.wait_until_gripper_position_reached()
-        logging.getLogger('robot_logger').info('time to set pos'.format(time.time() - t0))
+        logging.getLogger('robot_logger').info(f'time to set pos {time.time() - t0}')
 
         self._previous_target_qpos = tr.transform2state(new_transform, new_gripperstate, self._controller.default_rot)
         if self._hp.resetqpos_after_every_step:
